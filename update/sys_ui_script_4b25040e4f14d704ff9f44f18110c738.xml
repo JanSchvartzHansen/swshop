@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_regho_softwaresh.myApp</name>
+        <script><![CDATA[angular
+	.module('myApp', ['angularUtils.directives.dirPagination', 'ngSanitize']);]]></script>
+        <script_name>myApp</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>jhan0435</sys_created_by>
+        <sys_created_on>2018-02-16 14:11:27</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>4b25040e4f14d704ff9f44f18110c738</sys_id>
+        <sys_mod_count>6</sys_mod_count>
+        <sys_name>x_regho_softwaresh.myApp</sys_name>
+        <sys_package display_value="SoftwareShop" source="x_regho_softwaresh">895098d14f549304ff9f44f18110c7e1</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SoftwareShop">895098d14f549304ff9f44f18110c7e1</sys_scope>
+        <sys_update_name>sys_ui_script_4b25040e4f14d704ff9f44f18110c738</sys_update_name>
+        <sys_updated_by>jhan0435</sys_updated_by>
+        <sys_updated_on>2018-02-22 13:34:52</sys_updated_on>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

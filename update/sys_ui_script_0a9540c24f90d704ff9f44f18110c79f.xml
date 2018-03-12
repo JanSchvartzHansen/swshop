@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_regho_softwaresh.MyController</name>
+        <script><![CDATA[angular
+	.module('myApp')
+	.controller('MyController', MyController);
+
+function MyController($scope, $http, $sce) {
+ $scope.currentPage = 1;
+  $scope.pageSize = 10;
+  $scope.meals = [];
+		$scope.sortType     = 'Software'; // set the default sort type
+		$scope.sortReverse  = false;  // set the default sort order
+		$scope.searchSoftware   = '';     // set the default search/filter term
+		$scope.pc   = '';
+  
+		$scope.swlist = [];
+		
+	var ga = new GlideAjax('global.RegH_Ess');
+    ga.addParam('sysparm_name', 'getSoftwarepakker');
+	ga.addParam('sysparm_sync', "s");
+	ga.getXMLWait();	
+
+	var result=ga.getAnswer();
+	var obj = JSON.parse(result);
+
+	
+		
+//angular.module("CombineModule", ["sortApp", "ngBindHtmlExample", "ngSanitize"]);		
+//	
+// Create table
+//
+//  for (i = 0; i != obj.length; i++){
+	
+	console.log('*** Permission 0: '+obj[0].installpermission+' *********');	  
+	  
+for (i = 0; i != obj.length; i++){
+	
+var parser = new DOMParser();
+//var el = parser.parseFromString(obj[i].description, "text/xml");
+//var el = $sce.trustAsHtml("<span style='color: #366092;'><strong>10finger programmet, der kan tr&aelig;ne dine fingre p&aring; tastaturet og g&oslash;re dig bedre til at l&aelig;se og skrive. <br /></strong>10Finger best&aring;r af leg og &oslash;velser, der bruger computerens tastatur til at g&oslash;re dig fortrolig med bogstaver, ord og l&aelig;sning. <br />Link til 10finger. Bem&aelig;rk at dette kun er genvejen til en hjemmeside. Foruds&aelig;tter lokal aftale medudbyderen.<br/><br/><span style='color: #000000;'>Dette er en genvej under RegionH Links. Efter installation skal computeren genstartes f&oslash;r genvejen findes under RegionH Links.</span></span>");
+var el="<span style='color: #366092;'><strong>10finger programmet, der kan tr&aelig;ne dine fingre p&aring; tastaturet og g&oslash;re dig bedre til at l&aelig;se og skrive.<br /></strong>10Finger best&aring;r af leg og &oslash;velser, der bruger computerens tastatur til at g&oslash;re dig fortrolig med bogstaver, ord og l&aelig;sning. <br />Link til 10finger. Bem&aelig;rk at dette kun er genvejen til en hjemmeside. Foruds&aelig;tter lokal aftale medudbyderen.<br/><br/><span style='color: #000000;'>Dette er en genvej under RegionH Links. Efter installation skal computeren genstartes f&oslash;r genvejen findes under RegionH Links.</span></span>";
+	
+//var x={ 'Software': obj[i].name, 'Cost': obj[i].cost, 'url': obj[i].url, 'packageid': obj[i].packageid, 'description' : obj[i].description, 'accept' : false, 'reject' : false, 'idx' : i, 'softwarePackage' : obj[i].softwarePackage};
+	
+	  var x={ 'Software': obj[i].name, 'Cost': obj[i].cost, 'url': obj[i].url, 'packageid': obj[i].packageid, 'description' : obj[i].description, 'accept' : false, 'reject' : false, 'idx' : i, 'softwarePackage' : obj[i].softwarePackage, 'installpermission' : obj[i].installpermission};	
+	
+//	  $scope.meals.push('meal ' + i + ': ' + obj[i].name + ' ' + obj[i].version);
+	 
+	  $scope.swlist.push(x);
+	} 
+	
+
+	
+	  
+    $scope.accept = function (idx) {
+		//my function to accept
+		var i = $scope.swlist[idx];
+		g_form.setValue('accept', 'swlist: '+ $scope.swlist[idx].Software+' idx: '+$scope.swlist[idx].idx);
+        i.accept = true;
+        i.refuse = false;
+    };
+
+    $scope.refuse = function (idx) {
+        //my function to refuse
+        var i = $scope.swlist[idx];
+		g_form.setValue('refuse', 'swlist: '+ $scope.swlist[idx].Software+' idx: '+$scope.swlist[idx].idx);
+        i.refuse = true;
+        i.accept = false;
+    }	;   
+	
+$scope.checkbox = function (idx, value) {
+        //my function to refuse
+		
+        var i = $scope.swlist[idx];
+		
+		console.log('*********** checkbox: ******** idx: '+idx + ' value '+value + ' i: '+i);
+		
+		if ($scope.swlist[idx].Fabrikant == 'CIMT - Application Management'){
+			formValue=g_form.getValue('swUdenGodkendelse');
+			console.log('*********** checkbox: ******** swUdenGodkendelse:'+formValue +' value: '+ value);
+			if (!value)
+				formValue = formValue.replace($scope.swlist[idx].Software+'\n','');
+			else
+				formValue+=$scope.swlist[idx].Software+'\n';
+			g_form.setValue('swUdenGodkendelse',formValue);	
+			console.log('formvalue: '+formValue);
+			}
+		else{
+			formValue=g_form.getValue('swMedGodkendelse');
+			console.log('*********** checkbox: ******** swMedGodkendelse:'+formValue +' value: '+ value);
+			if (!value)
+				formValue = formValue.replace($scope.swlist[idx].Software+'\n','');
+			else
+				formValue+=$scope.swlist[idx].Software+'\n';
+			console.log('formvalue: '+formValue);
+			g_form.setValue('swMedGodkendelse',formValue);	
+	}	 
+
+		
+		
+		
+};
+}]]></script>
+        <script_name>MyController</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>jhan0435</sys_created_by>
+        <sys_created_on>2018-02-16 14:13:24</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>0a9540c24f90d704ff9f44f18110c79f</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>x_regho_softwaresh.MyController</sys_name>
+        <sys_package display_value="SoftwareShop" source="x_regho_softwaresh">895098d14f549304ff9f44f18110c7e1</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SoftwareShop">895098d14f549304ff9f44f18110c7e1</sys_scope>
+        <sys_update_name>sys_ui_script_0a9540c24f90d704ff9f44f18110c79f</sys_update_name>
+        <sys_updated_by>jhan0435</sys_updated_by>
+        <sys_updated_on>2018-02-19 10:53:46</sys_updated_on>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_number">
+    <sys_number action="INSERT_OR_UPDATE">
+        <category display_value="" name="incident_task">incident_task</category>
+        <maximum_digits>7</maximum_digits>
+        <number>1000</number>
+        <prefix>INCTSK</prefix>
+        <sys_class_name>sys_number</sys_class_name>
+        <sys_created_by>jhan0435</sys_created_by>
+        <sys_created_on>2018-02-26 08:37:34</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>afa81e894fe4db44ff9f44f18110c77f</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>INCTSK</sys_name>
+        <sys_package display_value="SoftwareShop" source="x_regho_softwaresh">895098d14f549304ff9f44f18110c7e1</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SoftwareShop">895098d14f549304ff9f44f18110c7e1</sys_scope>
+        <sys_update_name>sys_number_afa81e894fe4db44ff9f44f18110c77f</sys_update_name>
+        <sys_updated_by>jhan0435</sys_updated_by>
+        <sys_updated_on>2018-02-26 08:37:34</sys_updated_on>
+    </sys_number>
+</record_update>

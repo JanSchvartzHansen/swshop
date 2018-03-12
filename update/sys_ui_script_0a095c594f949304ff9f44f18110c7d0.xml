@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_regho_softwaresh.swlist</name>
+        <script><![CDATA[// Code goes here
+
+var myApp = angular.module('myApp');
+// var myApp = angular.module('myApp', ['angularUtils.directives.dirPagination', 'ngSanitize']);
+//myApp.controller('MyController', FuncMyController);
+myApp.controller('CheckBox', CheckBox);
+/*/myApp.controller('AppController', ['$http', '$templateCache', '$sce',
+    function AppController($http, $templateCache, $sce) {
+      var self = this;
+      $http.get('test_data.json', {cache: $templateCache}).then(function(response) {
+        self.userComments = response.data;
+      });
+      self.explicitlyTrustedHtml = $sce.trustAsHtml(
+          '<span onmouseover="this.textContent=&quot;Explicitly trusted HTML bypasses ' +
+          'sanitization.&quot;">Hover over this text.</span>');
+    }]);*/	
+
+
+function CheckBox($scope) {
+	$scope.CheckBox = 'false';
+}
+
+
+function FuncMyController($scope) {
+ $scope.currentPage = 1;
+  $scope.pageSize = 10;
+  $scope.meals = [];
+		$scope.sortType     = 'Software'; // set the default sort type
+		$scope.sortReverse  = false;  // set the default sort order
+		$scope.searchSoftware   = '';     // set the default search/filter term
+		$scope.pc   = '';
+  
+		$scope.swlist = [];
+		
+	var ga = new GlideAjax('global.RegH_Ess');
+    ga.addParam('sysparm_name', 'getSoftwarepakker');
+	ga.addParam('sysparm_sync', "s");
+	ga.getXMLWait();	
+
+	var result=ga.getAnswer();
+	var obj = JSON.parse(result);
+
+	
+		
+//angular.module("CombineModule", ["sortApp", "ngBindHtmlExample", "ngSanitize"]);		
+//	
+// Create table
+//
+//  for (i = 0; i != obj.length; i++){
+
+for (i = 0; i != obj.length; i++){
+	  var x={ 'Software': obj[i].name, 'Cost': obj[i].cost, 'url': obj[i].url, 'packageid': obj[i].packageid, 'description' : obj[i].description, 'accept' : false, 'reject' : false, 'idx' : i, 'softwarePackage' : obj[i].softwarePackage, 'installpermission' : obj[i].installpermission};	
+ 
+	  $scope.swlist.push(x);
+	} 
+	
+	
+	  
+    $scope.accept = function (idx) {
+		//my function to accept
+		var i = $scope.swlist[idx];
+		g_form.setValue('accept', 'swlist: '+ $scope.swlist[idx].Software+' idx: '+$scope.swlist[idx].idx);
+        i.accept = true;
+        i.refuse = false;
+    };
+
+    $scope.refuse = function (idx) {
+        //my function to refuse
+        var i = $scope.swlist[idx];
+		g_form.setValue('refuse', 'swlist: '+ $scope.swlist[idx].Software+' idx: '+$scope.swlist[idx].idx);
+        i.refuse = true;
+        i.accept = false;
+    }	;   
+	
+	$scope.checkbox123 = function (idx, value) {
+        //my function to refuse
+		
+        var i = $scope.swlist[idx];
+		
+		console.log('*********** checkbox123: ******** idx: '+idx + ' value '+value + ' i: '+i);
+		
+		if ($scope.swlist[idx].Fabrikant == 'CIMT - Application Management'){
+			formValue=g_form.getValue('swUdenGodkendelse');
+			console.log('*********** checkbox123: ******** swUdenGodkendelse:'+formValue +' value: '+ value);
+			if (!value)
+				formValue = formValue.replace($scope.swlist[idx].Software+'\n','');
+			else
+				formValue+=$scope.swlist[idx].Software+'\n';
+			g_form.setValue('swUdenGodkendelse',formValue);	
+			console.log('formvalue: '+formValue);
+			}
+		else{
+			formValue=g_form.getValue('swMedGodkendelse');
+			console.log('*********** checkbox123: ******** swMedGodkendelse:'+formValue +' value: '+ value);
+			if (!value)
+				formValue = formValue.replace($scope.swlist[idx].Software+'\n','');
+			else
+				formValue+=$scope.swlist[idx].Software+'\n';
+			console.log('formvalue: '+formValue);
+			g_form.setValue('swMedGodkendelse',formValue);	
+	}	 
+
+		
+		
+		
+};	  
+
+	
+
+}
+
+function OtherController($scope) {
+  
+  $scope.pageChangeHandler = function(num) {
+      console.log('meals page changed to ' + num);
+  };
+}
+]]></script>
+        <script_name>swlist</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>jhan0435</sys_created_by>
+        <sys_created_on>2018-02-14 07:43:35</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>0a095c594f949304ff9f44f18110c7d0</sys_id>
+        <sys_mod_count>44</sys_mod_count>
+        <sys_name>x_regho_softwaresh.swlist</sys_name>
+        <sys_package display_value="SoftwareShop" source="x_regho_softwaresh">895098d14f549304ff9f44f18110c7e1</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SoftwareShop">895098d14f549304ff9f44f18110c7e1</sys_scope>
+        <sys_update_name>sys_ui_script_0a095c594f949304ff9f44f18110c7d0</sys_update_name>
+        <sys_updated_by>jhan0435</sys_updated_by>
+        <sys_updated_on>2018-02-19 10:57:15</sys_updated_on>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

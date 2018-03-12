@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_template">
+    <sys_template action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <global>false</global>
+        <group/>
+        <link_element/>
+        <name>TEMPLATE2152</name>
+        <next/>
+        <next_child/>
+        <roles/>
+        <short_description/>
+        <show_on_template_bar>true</show_on_template_bar>
+        <stand_alone>false</stand_alone>
+        <sys_class_name>sys_template</sys_class_name>
+        <sys_created_by>jhan0435</sys_created_by>
+        <sys_created_on>2018-02-26 09:19:15</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>7042a6054f28db44ff9f44f18110c7fc</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>TEMPLATE2152</sys_name>
+        <sys_package display_value="SoftwareShop" source="x_regho_softwaresh">895098d14f549304ff9f44f18110c7e1</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SoftwareShop">895098d14f549304ff9f44f18110c7e1</sys_scope>
+        <sys_update_name>sys_template_7042a6054f28db44ff9f44f18110c7fc</sys_update_name>
+        <sys_updated_by>jhan0435</sys_updated_by>
+        <sys_updated_on>2018-02-26 09:19:15</sys_updated_on>
+        <table/>
+        <template/>
+        <user display_value="Jan Schvartz Hansen">04da1fab6ff7c500ed00af141f3ee4f4</user>
+        <view/>
+    </sys_template>
+</record_update>

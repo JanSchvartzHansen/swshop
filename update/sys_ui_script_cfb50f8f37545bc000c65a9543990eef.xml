@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_regho_softwaresh.MyPcController</name>
+        <script><![CDATA[angular
+	.module('myApp')
+	.controller('MyPcController', MyPcController2);
+
+function MyPcController2($scope, $http, $sce) {
+
+/*var formValue='';
+var	pc ='pc026409';
+console.log('*** MyPcController: '+pc+' *********');*/	  
+$scope.pc='';	
+ $scope.currentPage = 1;
+  $scope.pageSize = 20;
+  $scope.meals = [];
+		$scope.sortType     = 'Software'; // set the default sort type
+		$scope.sortReverse  = false;  // set the default sort order
+		$scope.searchSoftware   = '';     // set the default search/filter term
+		$scope.pc   = '';
+  
+		$scope.pcswlist = [];
+		
+/*	var ga = new GlideAjax('global.RegH_Ess');
+    ga.addParam('sysparm_name', 'getSoftwareOnPc');
+    ga.addParam('sysparm_ci', pc);
+	ga.addParam('sysparm_sync', "s");
+	ga.getXMLWait();
+
+	var result=ga.getAnswer();
+	var obj = JSON.parse(result);
+
+	
+		
+//angular.module("CombineModule", ["sortApp", "ngBindHtmlExample", "ngSanitize"]);		
+//	
+// Create table
+//
+//  for (i = 0; i != obj.length; i++){
+	
+	
+console.log('*****    obj[0]: '+obj[0].name );	  
+for (i = 0; i != obj.length; i++){
+	
+	  	  var x={ 'Software': obj[i].name, 'Version': obj[i].version, 'Fabrikant': obj[i].manufacturer, 'approve': obj[i].approve, 'accept' : false, 'reject' : false, 'idx' : i};
+	  $scope.pcswlist.push(x);
+	}*/ 
+	
+
+	
+	  
+    $scope.accept = function (idx) {
+		//my function to accept
+		var i = $scope.pcswlist[idx];
+		g_form.setValue('accept', 'pcswlist: '+ $scope.pcswlist[idx].Software+' idx: '+$scope.pcswlist[idx].idx);
+        i.accept = true;
+        i.refuse = false;
+    };
+
+    $scope.refuse = function (idx) {
+        //my function to refuse
+        var i = $scope.pcswlist[idx];
+		g_form.setValue('refuse', 'pcswlist: '+ $scope.pcswlist[idx].Software+' idx: '+$scope.pcswlist[idx].idx);
+        i.refuse = true;
+        i.accept = false;
+    }	;
+	
+   $scope.checkboxLicens = function (idx, value) {
+        //my function to refuse
+	   console.log('getControl (pc): '+g_form.getControl('pc')); 
+	   console.log('getControl (Licens): '+g_form.getControl('swHarLicens'));
+	  	g_form.setValue("swHarLicens","YYYYY");
+	   console.log('**** Har licens :'+idx+value);
+		var formValue=g_form.getValue('swHarLicens');
+	   console.log('**** formValue1 :'+formValue);	
+/*		var i = $scope.pcswlist[idx];
+		if (!value)
+			formValue = formValue.replace($scope.pcswlist[idx].Software+'\n','');
+		else
+			formValue+=$scope.pcswlist[idx].Software+'\n';
+	   
+	   console.log('**** formValue2 :'+formValue);
+		g_form.setValue("swUdenGodkendelse","XXXXX");*/
+    };
+	
+	
+	
+	
+	
+$scope.searchpc = function (pc) {
+        //my function to refuse
+	
+	
+	console.log('*********** Pc: '+$scope.pc);
+	delete $scope.pcswlist.value;
+//	console.log('PC Obj-name:' + obj[1].name);
+	if (!$scope.pc)
+		return;
+	
+////////////////	
+	
+	
+$scope.status = '  ';
+  $scope.customFullscreen = false;
+	
+	ga = new GlideAjax('global.RegH_Ess');	
+	ga.addParam('sysparm_name', 'getPcOwner');
+	ga.addParam('sysparm_ci', $scope.pc);
+	ga.addParam('sysparm_sync', "s");
+	console.log('ajax kald1');
+	ga.getXMLWait();
+	
+	var result=ga.getAnswer();
+	
+	
+	console.log('result: '+result.lenght+' userid: '+result.userid+' \nName: '+ result.username);
+	
+	
+	
+	
+	ga = new GlideAjax('global.RegH_Ess');
+//	ga.addParam('sysparm_name', 'getSoftwareOnPc');
+	ga.addParam('sysparm_name', 'getSoftwareOnPc');
+	ga.addParam('sysparm_ci', $scope.pc);
+	ga.addParam('sysparm_sync', "s");
+	console.log('ajax kald');
+	ga.getXMLWait();
+
+	result=ga.getAnswer();
+	
+	var obj = JSON.parse(result);
+	$scope.pcswlist = [];
+	var x;
+	if (obj.length == 0){
+		x={ 'Software':  $scope.pc +' ikke fundet'};
+		$scope.pcswlist.push(x);	   
+			  }
+	else{
+		
+	
+	for (i = 0; i != obj.length; i++){
+//	console.log('url: '+obj[i].url);
+//	  	 x={ 'Software': obj[i].name, 'Version': obj[i].version, 'Fabrikant': obj[i].manufacturer, 'installpermission': obj[i].installpermission, 'url': obj[i].url, 'approve': obj[i].approve, 'accept' : false, 'reject' : false, 'idx' : i};
+			  	 x={ 'Software': obj[i].name, 'Version': obj[i].version, 'Fabrikant': obj[i].manufacturer, 'installpermission': obj[i].installpermission, 'approve': obj[i].approve, 'accept' : false, 'reject' : false, 'idx' : i};
+	  $scope.pcswlist.push(x);
+		
+		}
+	}
+};
+}]]></script>
+        <script_name>MyPcController</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>jhan0435</sys_created_by>
+        <sys_created_on>2018-02-20 06:46:51</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_id>cfb50f8f37545bc000c65a9543990eef</sys_id>
+        <sys_mod_count>66</sys_mod_count>
+        <sys_name>x_regho_softwaresh.MyPcController</sys_name>
+        <sys_package display_value="SoftwareShop" source="x_regho_softwaresh">895098d14f549304ff9f44f18110c7e1</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SoftwareShop">895098d14f549304ff9f44f18110c7e1</sys_scope>
+        <sys_update_name>sys_ui_script_cfb50f8f37545bc000c65a9543990eef</sys_update_name>
+        <sys_updated_by>jhan0435</sys_updated_by>
+        <sys_updated_on>2018-03-01 09:36:26</sys_updated_on>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

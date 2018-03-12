@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sysrule_approvals">
+    <sysrule_approvals action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <condition table="incident_task">short_descriptionSTARTSWITHEksitstende Licens^EQ<item endquery="false" field="short_description" goto="false" newquery="false" operator="STARTSWITH" or="false" value="Eksitstende Licens"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </condition>
+        <description/>
+        <group display_value="Licensstyring" name="Licensstyring">33a683756fea5500272e5dd16e3ee40a</group>
+        <match_conditions>ANY</match_conditions>
+        <name>Licens</name>
+        <optional_group/>
+        <order>100</order>
+        <run_rule_before>true</run_rule_before>
+        <script/>
+        <set_state>requested</set_state>
+        <sys_class_name>sysrule_approvals</sys_class_name>
+        <sys_created_by>jhan0435</sys_created_by>
+        <sys_created_on>2018-02-26 09:17:39</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>eb2162c14f28db44ff9f44f18110c76b</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>Licens</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="SoftwareShop" source="x_regho_softwaresh">895098d14f549304ff9f44f18110c7e1</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="SoftwareShop">895098d14f549304ff9f44f18110c7e1</sys_scope>
+        <sys_update_name>sysrule_approvals_eb2162c14f28db44ff9f44f18110c76b</sys_update_name>
+        <sys_updated_by>jhan0435</sys_updated_by>
+        <sys_updated_on>2018-02-26 14:08:04</sys_updated_on>
+        <table>incident_task</table>
+        <user/>
+    </sysrule_approvals>
+</record_update>
